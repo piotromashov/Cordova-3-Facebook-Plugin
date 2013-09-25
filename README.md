@@ -14,10 +14,10 @@ Please note that you will need to [generate a hash of your Android key(s) and su
 
 1. [Create a basic Cordova Android application](http://docs.phonegap.com/en/3.0.0/guide_overview_index.md.html#Overview).
 
-2. In the Cordova Android application you will need to put the following in your res/xml/config.xml file: 
-	&lt;feature name="FacebookConnect"&gt
-    	&ltparam name="android-package" value="org.apache.cordova.facebookconnect.FacebookConnect" /&gt
-	&lt/feature&gt
+2. In the Cordova Android application you will need to put the following in your res/xml/config.xml file:<pre>
+	&lt;feature name="FacebookConnect"&gt;
+    	&lt;param name="android-package" value="org.apache.cordova.facebookconnect.FacebookConnect" /&gt;
+	&lt;/feature&gt;</pre>
 
 3. You'll need to set up the Facebook SDK for Android:
   * [Install the Facebook SDK for Android and the Facebook APK](https://developers.facebook.com/docs/getting-started/facebook-sdk-for-android/3.0/)
@@ -25,7 +25,9 @@ Please note that you will need to [generate a hash of your Android key(s) and su
   * Link the Facebook SDK library to your project.  View the properties for the project, and navigate to the 'Android' tab. In the lower part of the dialog, click 'Add' and choose the 'FacebookSDK' project from the workspace.
   * Add a new `com.facebook.LoginActivity` activity to your app to handle Facebook Login. Open up your `AndroidManifest.xml` file and add this additional activity:<pre>&lt;activity android:name="com.facebook.LoginActivity" android:label="@string/app_name" /&gt;</pre>
   * Below the activity tag add this additional meta tag, which will be a link to your facebook App ID:<pre>&lt;meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/&gt;</pre>
-  * Add the App ID string to your strings file. Open your `strings.xml` file and add this resources child:<pre>&lt;string name="app_id"&gt;facebookappid&lt;/string&gt;</pre>
+  * Add the App ID string to your strings file. Open your `strings.xml` file and add this resources child:<pre>&lt;string name="app_id"&gt;FACEBOOKAPPID&lt;/string&gt;</pre>
+
+4. From the Cordova Facebook Plugin folder copy FacebookConnect.java from `src/org/apache/cordova/facebookconnect/` folder into the root of your Cordova Android application into `src/org/apache/cordova/facebookconnect/`. You may have to create that directory path in your project. 
 
 ## Key Hash generation
 
