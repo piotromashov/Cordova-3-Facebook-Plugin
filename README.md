@@ -10,9 +10,32 @@ The Facebook plugin for [Apache Cordova](http://cordova.apache.org/) allows you 
 ## Facebook Requirements and Set-Up
 
 To use this plugin you will need to make sure you've registered your Facebook app with Facebook and have an APP_ID (https://developers.facebook.com/apps).
-Please note that you will need to [generate a hash of your Android key(s) and submit those to the Developers page on Facebook](https://developers.facebook.com/docs/getting-started/facebook-sdk-for-android/3.0/) to get it working. Further explanation can be found below.
+Please note that you will need to [generate a hash of your Android key(s) and submit those to the Developers page on Facebook](https://developers.facebook.com/docs/getting-started/facebook-sdk-for-android/3.0/) to get it working. Further explanation can be found further.
 
-# Key Hash generation
+1. [Create a basic Cordova Android application](http://docs.phonegap.com/en/3.0.0/guide_overview_index.md.html#Overview).
+
+2. In the Cordova Android application you will need to put the following in your res/xml/config.xml file: 
+	&lt;feature name="FacebookConnect"&gt
+    	&ltparam name="android-package" value="org.apache.cordova.facebookconnect.FacebookConnect" /&gt
+	&lt/feature&gt
+
+3. You'll need to set up the Facebook SDK for Android:
+  * [Install the Facebook SDK for Android and the Facebook APK](https://developers.facebook.com/docs/getting-started/facebook-sdk-for-android/3.0/)
+  * [Import the Facebook SDK into Eclipse](https://developers.facebook.com/docs/getting-started/facebook-sdk-for-android/3.0/)
+  * Link the Facebook SDK library to your project.  View the properties for the project, and navigate to the 'Android' tab. In the lower part of the dialog, click 'Add' and choose the 'FacebookSDK' project from the workspace.
+  * Add a new `com.facebook.LoginActivity` activity to your app to handle Facebook Login. Open up your `AndroidManifest.xml` file and add this additional activity:
+
+    &ltactivity android:name="com.facebook.LoginActivity" android:label="@string/app_name" /&gt
+
+  * Below the activity tag add this additional meta tag, which will be a link to your facebook App ID:
+
+  	&ltmeta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/&gt
+
+  * Add the App ID string to your strings file. Open your `strings.xml` file and add this resources child (don't forget to write your app id):
+
+  	&ltstring name="app_id"&gtfacebookappid&lt/string&gt
+
+## Key Hash generation
 
 On Linux/OS X run: <pre>keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64</pre>
 
@@ -20,4 +43,5 @@ On Windows, use: <pre>keytool -exportcert -alias androiddebugkey -keystore %HOME
 
 You will be prompted for a password. This should be 'android' without quotes. You'll then be given a key hash of 10-20 characters. (If you are not prompted for a password, something is wrong and you must check your paths above to ensure the debug.keystore is present.)
 
-NOTE: When you are ready to release your app, be sure that your Facebook Application is not in sandbox mode, and generate your key hash with your android key, example: <pre>keytool -exportcert -alias <yourkeyalias> -keystore <yourkeypath> | openssl sha1 -binary | openssl base64</pre> when prompted for password, it's not 'android', it's your key password.
+NOTE 1: When you are ready to release your app, be sure that your Facebook Application is not in sandbox mode, and generate your key hash with your android key, example: <pre>keytool -exportcert -alias yourkeyalias -keystore yourkeypath | openssl sha1 -binary | openssl base64</pre> 
+NOTE 2: When prompted for password, it's not 'android', it's your key password.
