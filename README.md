@@ -23,11 +23,9 @@ Please note that you will need to [generate a hash of your Android key(s) and su
   * [Install the Facebook SDK for Android and the Facebook APK](https://developers.facebook.com/docs/getting-started/facebook-sdk-for-android/3.0/)
   * [Import the Facebook SDK into Eclipse](https://developers.facebook.com/docs/getting-started/facebook-sdk-for-android/3.0/)
   * Link the Facebook SDK library to your project.  View the properties for the project, and navigate to the 'Android' tab. In the lower part of the dialog, click 'Add' and choose the 'FacebookSDK' project from the workspace.
-  * Add a new `com.facebook.LoginActivity` activity to your app to handle Facebook Login. Open up your `AndroidManifest.xml` file and add this additional activity:<pre><activity android:name="com.facebook.LoginActivity" android:label="@string/app_name" /></pre>
-
-  * Below the activity tag add this additional meta tag, which will be a link to your facebook App ID:<pre><meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/></pre>
-
-  * Add the App ID string to your strings file. Open your `strings.xml` file and add this resources child (don't forget to write your app id):<pre><string name="app_id">facebookappid</string></pre>
+  * Add a new `com.facebook.LoginActivity` activity to your app to handle Facebook Login. Open up your `AndroidManifest.xml` file and add this additional activity:<pre>&lt;activity android:name="com.facebook.LoginActivity" android:label="@string/app_name" /&gt;</pre>
+  * Below the activity tag add this additional meta tag, which will be a link to your facebook App ID:<pre>&lt;meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/&gt;</pre>
+  * Add the App ID string to your strings file. Open your `strings.xml` file and add this resources child:<pre>&lt;string name="app_id"&gt;facebookappid&lt;/string&gt;</pre>
 
 ## Key Hash generation
 
