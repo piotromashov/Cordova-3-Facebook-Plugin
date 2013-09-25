@@ -20,4 +20,4 @@ On Windows, use: <pre>keytool -exportcert -alias androiddebugkey -keystore %HOME
 
 You will be prompted for a password. This should be 'android' without quotes. You'll then be given a key hash of 10-20 characters. (If you are not prompted for a password, something is wrong and you must check your paths above to ensure the debug.keystore is present.)
 
-	Note: When you are ready to release your app, be sure that your Facebook Application is not in sandbox mode, and generate your key hash with your android key, example: <pre>keytool -exportcert -alias <yourkeyalias> -keystore <yourkeypath> | openssl sha1 -binary | openssl base64</pre> when prompted for password, it's not 'android', it's your key password.
+NOTE: When you are ready to release your app, be sure that your Facebook Application is not in sandbox mode, and generate your key hash with your android key, example: <pre>keytool -exportcert -alias <yourkeyalias> -keystore <yourkeypath> | openssl sha1 -binary | openssl base64</pre> when prompted for password, it's not 'android', it's your key password.
