@@ -23,17 +23,11 @@ Please note that you will need to [generate a hash of your Android key(s) and su
   * [Install the Facebook SDK for Android and the Facebook APK](https://developers.facebook.com/docs/getting-started/facebook-sdk-for-android/3.0/)
   * [Import the Facebook SDK into Eclipse](https://developers.facebook.com/docs/getting-started/facebook-sdk-for-android/3.0/)
   * Link the Facebook SDK library to your project.  View the properties for the project, and navigate to the 'Android' tab. In the lower part of the dialog, click 'Add' and choose the 'FacebookSDK' project from the workspace.
-  * Add a new `com.facebook.LoginActivity` activity to your app to handle Facebook Login. Open up your `AndroidManifest.xml` file and add this additional activity:
+  * Add a new `com.facebook.LoginActivity` activity to your app to handle Facebook Login. Open up your `AndroidManifest.xml` file and add this additional activity:<pre>&ltactivity android:name="com.facebook.LoginActivity" android:label="@string/app_name" /&gt</pre>
 
-    &ltactivity android:name="com.facebook.LoginActivity" android:label="@string/app_name" /&gt
+  * Below the activity tag add this additional meta tag, which will be a link to your facebook App ID:<pre>&ltmeta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/&gt</pre>
 
-  * Below the activity tag add this additional meta tag, which will be a link to your facebook App ID:
-
-  	&ltmeta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/&gt
-
-  * Add the App ID string to your strings file. Open your `strings.xml` file and add this resources child (don't forget to write your app id):
-
-  	&ltstring name="app_id"&gtfacebookappid&lt/string&gt
+  * Add the App ID string to your strings file. Open your `strings.xml` file and add this resources child (don't forget to write your app id):<pre>&ltstring name="app_id"&gtfacebookappid&lt/string&gt</pre>
 
 ## Key Hash generation
 
@@ -44,4 +38,5 @@ On Windows, use: <pre>keytool -exportcert -alias androiddebugkey -keystore %HOME
 You will be prompted for a password. This should be 'android' without quotes. You'll then be given a key hash of 10-20 characters. (If you are not prompted for a password, something is wrong and you must check your paths above to ensure the debug.keystore is present.)
 
 NOTE 1: When you are ready to release your app, be sure that your Facebook Application is not in sandbox mode, and generate your key hash with your android key, example: <pre>keytool -exportcert -alias yourkeyalias -keystore yourkeypath | openssl sha1 -binary | openssl base64</pre> 
+
 NOTE 2: When prompted for password, it's not 'android', it's your key password.
