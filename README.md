@@ -1,4 +1,4 @@
-Cordova-3-Facebook-Plugin
+# Cordova-3-Facebook-Plugin
 =========================
 This plugin is for Cordova 3.0.0 and above, it uses Facebook SDK 3.5 (newest release by now). I have refractored and changed the code made by @mgcrea https://github.com/mgcrea/cordova-facebook-connect and https://github.com/Polve/phonegap-facebook-plugin. This is a merge of both of them, and much easier to use.
 -------------------------
@@ -7,7 +7,6 @@ The Facebook plugin for [Apache Cordova](http://cordova.apache.org/) allows you 
 
     * Supported on PhoneGap (Cordova) v3.0 and above.
     * Supported FacebookSDK 3.0 and above.
-
 
 ## Facebook Requirements and Set-Up
 
