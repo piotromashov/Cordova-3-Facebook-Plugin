@@ -27,7 +27,9 @@ Please note that you will need to [generate a hash of your Android key(s) and su
   * Below the activity tag add this additional meta tag, which will be a link to your facebook App ID:<pre>&lt;meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/app_id"/&gt;</pre>
   * Add the App ID string to your strings file. Open your `strings.xml` file and add this resources child:<pre>&lt;string name="app_id"&gt;FACEBOOKAPPID&lt;/string&gt;</pre>
 
-4. From the Cordova Facebook Plugin folder copy FacebookConnect.java from `src/org/apache/cordova/facebookconnect/` folder into the root of your Cordova Android application into `src/org/apache/cordova/facebookconnect/`. You may have to create that directory path in your project. 
+4. From the Cordova Facebook Plugin folder copy FacebookConnect.java from `src/org/apache/cordova/facebookconnect/` folder into the root of your Cordova Android application into `src/org/apache/cordova/facebookconnect/`. You may have to create that directory path in your project.
+
+5. From the Cordova Facebook Plugin folder copy the `assets/www/js/FacebookConnect.js`, `assets/www/js/device-ready.js` and `assets/www/index.html` files into your application's respective folders. Overwrite the existing index.html file.
 
 ## Key Hash generation
 
