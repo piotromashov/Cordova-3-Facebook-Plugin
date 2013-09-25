@@ -31,6 +31,9 @@ Please note that you will need to [generate a hash of your Android key(s) and su
 
 5. From the Cordova Facebook Plugin folder copy the `assets/www/js/FacebookConnect.js`, `assets/www/js/device-ready.js` and `assets/www/index.html` files into your application's respective folders. Overwrite the existing index.html file.
 
+You can see the proper folders structure in the zip
+This plugin has basic implementations (login, logout, me, and status), more functionality to be developed later on.
+
 ## Key Hash generation
 
 On Linux/OS X run: <pre>keytool -exportcert -alias androiddebugkey -keystore ~/.android/debug.keystore | openssl sha1 -binary | openssl base64</pre>
