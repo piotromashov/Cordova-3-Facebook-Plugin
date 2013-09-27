@@ -84,6 +84,9 @@ public class FacebookConnect extends CordovaPlugin {
                 			if (state.isOpened()) {
                 				callbackContext.success(session.getState().toString());
                 			}
+                			if (state.isClosed()){
+                				callbackContext.error(session.getState().toString());
+                			}
                 		}
                     });
                 }    		
