@@ -24,7 +24,7 @@
 	};
 
 	FacebookConnect.prototype.logout = function(callback) {
-		var _callback = function(logout) {
+		var _callback = function(result) {
 			console.log('FacebookConnect.logout: %o', arguments);
 			if(typeof callback == 'function') callback.apply(null, arguments);
 		};
@@ -32,7 +32,7 @@
 	};
 
 	FacebookConnect.prototype.me = function(callback) {
-		var _callback = function(logout) {
+		var _callback = function(result) {
 			console.log('FacebookConnect.me: %o', arguments);
 			if(typeof callback == 'function') callback.apply(null, arguments);
 		};
@@ -40,11 +40,19 @@
 	};
 
 	FacebookConnect.prototype.status = function(callback) {
-		var _callback = function(logout) {
+		var _callback = function(result) {
 			console.log('FacebookConnect.status: %o', arguments);
 			if(typeof callback == 'function') callback.apply(null, arguments);
 		};
 		return cordova.exec(_callback, _callback, service, 'status', []);
+	};
+	
+	FacebookConnect.prototype.share = function(callback) {
+		var _callback = function(result) {
+			console.log('FacebookConnect.share: %o', arguments);
+			if(typeof callback == 'function') callback.apply(null, arguments);
+		};
+		return cordova.exec(_callback, _callback, service, 'share', [arguments]);
 	};
 
 	cordova.addConstructor(function() {

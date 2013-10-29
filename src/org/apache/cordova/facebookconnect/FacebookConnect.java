@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.util.Log;
 import com.facebook.*;
 import com.facebook.model.GraphUser;
-
+import com.facebook.widget.FacebookDialog;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
@@ -17,13 +17,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- * This class echoes a string called from JavaScript.
- */
 public class FacebookConnect extends CordovaPlugin {
 	
 	public final static String TAG = "FacebookConnect";
 	public boolean force_login = true;
+	private UiLifecycleHelper uiHelper;
 	
     @Override
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
@@ -35,6 +33,7 @@ public class FacebookConnect extends CordovaPlugin {
     		else if(action.equals("logout")) result = this.logout(args, callbackContext);
     		else if(action.equals("me")) result = this.me(args, callbackContext);
     		else if(action.equals("status")) result = this.status(args, callbackContext);
+    		else if(action.equals("share")) result = this.share(args, callbackContext);
     		else {callbackContext.error("Error: Unsupported action"); result = false;}
     	} catch (MalformedURLException e) {
     		e.printStackTrace();
@@ -85,7 +84,7 @@ public class FacebookConnect extends CordovaPlugin {
                 				callbackContext.success(session.getState().toString());
                 			}
                 			if (state.isClosed()){
-                				callbackContext.error(session.getState().toString());
+                                callbackContext.error(session.getState().toString());
                 			}
                 		}
                     });
@@ -178,6 +177,42 @@ public class FacebookConnect extends CordovaPlugin {
     	}
     	callbackContext.success(message);
     	return true;    	
+    }
+    
+    /**
+     * Cordova interface to get status
+     *
+     * @param args
+     * @param callbackContext
+     * @return result
+     * @throws JSONException
+     * @throws MalformedURLException
+     * @throws IOException
+     */
+    private boolean share(JSONArray args, final CallbackContext callbackContext) throws JSONException, MalformedURLException, IOException {
+    	
+    	Log.d(TAG, "Share Triggered");    
+    	uiHelper = new UiLifecycleHelper(cordova.getActivity(), null);
+    	
+    	JSONObject params = args.getJSONObject(0).getJSONObject("1");
+		String title = params.optString("title");
+		String description = params.optString("description");
+		String picture = params.optString("picture");
+		String link = params.optString("link");
+
+    	if (Session.getActiveSession() == null || Session.getActiveSession().isClosed()) {
+    		callbackContext.error("No opened session");
+    	} else if (FacebookDialog.canPresentShareDialog(cordova.getActivity(), FacebookDialog.ShareDialogFeature.SHARE_DIALOG)) {
+    		FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(cordova.getActivity())
+    		.setName(title)
+    		.setDescription(description)
+    		.setLink(link)
+    		.setPicture(picture)    		
+    		.build();
+    		uiHelper.trackPendingDialogCall(shareDialog.present());
+    		callbackContext.success("Success");
+    	}
+    	return true;
     }
     
     public JSONObject userToJSON(GraphUser user) {
